@@ -1,0 +1,38 @@
+group 'org.red5'
+version '0.3'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.5
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/java'
+        }
+        resources {
+            srcDir 'src/resources'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'lib')
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}

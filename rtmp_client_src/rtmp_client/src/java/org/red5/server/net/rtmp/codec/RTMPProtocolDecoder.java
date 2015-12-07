@@ -827,8 +827,12 @@ public class RTMPProtocolDecoder implements Constants, IEventDecoder {
 		}
 
 		if (header == null || header.getStreamId() == 0) {
-			int invokeId = deserializer.<Number> deserialize(input, Number.class).intValue();
-			notify.setInvokeId(invokeId);
+			try {
+				int invokeId = deserializer.<Number>deserialize(input, Number.class).intValue();
+				notify.setInvokeId(invokeId);
+			} catch (Exception e) {
+				return notify;
+			}
 		}
 
 		// now go back to the actual encoding to decode parameters
